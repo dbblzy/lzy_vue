@@ -5,10 +5,13 @@ import Login from '../components/Login'
 import Home from '../components/Home'
 import LibraryIndex from '../components/library/LibraryIndex'
 import Register from '../components/Register'
-import UserBasic from '../components/admin/user/UserBasic'
-import AdminIndex from '../components/admin/AdminIndex'
+ import AdminIndex from '../components/admin/AdminIndex'
 import AdminMenu from '../components/admin/AdminMenu';
 import Header from '../components/admin/Header';
+import Dashboard from '../components/admin/dashboard/admin/index'
+import Editor from '../components/admin/content/ArticalEditor'
+import Jotter from '../components/jotter/Articles'
+import Articles from '../components/jotter/ArticleDetails'
 
 Vue.use(Router)
 
@@ -38,7 +41,12 @@ export default new Router({
           meta: {
             requireAuth: true
           }
-        }
+        },
+        {
+          path: '/jotter',
+          name: 'Jotter',
+          component: Jotter
+        },
         
       ]
     },
@@ -48,7 +56,15 @@ export default new Router({
       component:AdminIndex,
       meta: {
          requireAuth: true
-       }
+       },
+       children:[{
+         path:'/admin/dashboard',
+         name:'Dashboard',
+         component:Dashboard,
+         meta:{
+           requireAuth:true
+         }
+       }]
 
     },
     {
@@ -90,7 +106,12 @@ export const createRouter =routes=>new Router({
           meta: {
             requireAuth: true
           }
-        }
+        },
+        {
+          path: '/admin/content/editor',
+          name: 'Editor',
+          component: Jotter
+        },
         
       ]
     },
@@ -100,7 +121,15 @@ export const createRouter =routes=>new Router({
       component:AdminIndex,
       meta: {
          requireAuth: true
-       }
+       },
+       children:[{
+         path:'/admin/dashboard',
+         name:'Dashboard',
+         component:Dashboard,
+         meta:{
+           requireAuth:true
+         }
+       }]
 
     },
     {
