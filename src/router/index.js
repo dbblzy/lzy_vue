@@ -54,6 +54,14 @@ export default new Router({
           name: 'Article',
           component: Articles
         },
+        {
+          path: '/admin/content/editor',
+          name: 'Editor',
+          component:  Editor,
+          meta: {
+            requireAuth: true
+          }
+        },
         
       ]
     },
@@ -115,9 +123,22 @@ export const createRouter =routes=>new Router({
           }
         },
         {
+          path: '/jotter',
+          name: 'Jotter',
+          component: Jotter
+        },
+        {
+          path: '/jotter/article',
+          name: 'Article',
+          component: Articles
+        },
+        {
           path: '/admin/content/editor',
           name: 'Editor',
-          component: Jotter
+          component:  Editor,
+          meta: {
+            requireAuth: true
+          }
         },
         
       ]

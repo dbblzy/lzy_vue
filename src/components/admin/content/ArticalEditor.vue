@@ -51,7 +51,7 @@
 <script>
   import {mavonEditor} from "mavon-editor";
   import 'mavon-editor/dist/css/index.css'	//解决编辑器的功能显示问题
-  import ImgUpload from '../../ImgUpload'
+  import ImgUpload from '../content/ImgUpload'
   export default {
     name: 'Editor',
     components: {mavonEditor,ImgUpload},
@@ -67,18 +67,22 @@
       }
     },
     methods: {
+
       saveArticles (value, render) {
         let nowDate=new Date();
         let date={
           year:nowDate.getFullYear(),
           month:nowDate.getMonth()+1,
-          date:nowDate.getDate()
+          date:nowDate.getDate(),
+          hh:nowDate.getUTCHours(),
+          mm:nowDate.getMinutes(),
+          ss:nowDate.getSeconds()
         }
         if(date.month<10){
           date.month='0'+date.month
         }
         
-        console.log(date.year+'-'+date.month+'-'+date.date),
+        console.log(date.year+'-'+date.month+'-'+date.date+' '+date.hh+':'+date.mm+':'+date.ss),
         // value 是 md，render 是 html
         this.$confirm('是否保存并发布文章?', '提示', {
           confirmButtonText: '确定',
@@ -93,7 +97,7 @@
                 articleContentHtml: render,
                 articleAbstract: this.article.articleAbstract,
                 articleCover: this.article.articleCover,
-                articleDate: date.year+'-'+date.month+'-'+date.date
+                articleDate: date.year+'-'+date.month+'-'+date.date+' '+date.hh+':'+date.mm+':'+date.ss
                 
               }).then(resp => {
               if (resp && resp.data.code === 200) {
