@@ -103,6 +103,7 @@
         this.$axios.get('/article/' + this.pageSize + '/1').then(resp => {
           if (resp && resp.data.code === 200) {
             _this.articles = resp.data.result.content
+            console.log(resp.data.result.content.articleUrl)
             _this.total = resp.data.result.totalElements
           }
         })

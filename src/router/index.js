@@ -13,6 +13,8 @@ import Editor from '../components/admin/content/ArticalEditor'
 import Jotter from '../components/jotter/Articles'
 import Articles from '../components/jotter/ArticleDetails'
 
+
+
 Vue.use(Router)
 
 export default new Router({
@@ -46,6 +48,11 @@ export default new Router({
           path: '/jotter',
           name: 'Jotter',
           component: Jotter
+        },
+        {
+          path: '/jotter/article',
+          name: 'Article',
+          component: Articles
         },
         
       ]
